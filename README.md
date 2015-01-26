@@ -14,7 +14,7 @@ configuration, see #additional software for detailed information).
 as `root` without password).
 
 3. It stores source codes and mysql data on the host machine, therefore you don't need to deploy your app each
-time you start container.
+time you start container. 
 
 4. Php process run by user with UID 1000 (by default, the same UID as your host machine user), 
 thus it can access all files. At the same time, you have all permissions for generated files.
@@ -38,10 +38,10 @@ Other variant is to update `/etc/hosts` manually, each time adding something lik
 
 ## how to run container
 
-    docker run --name some-server -p 127.0.0.1:80:80 -v /opt/mysql:/var/lib/mysql -v /var/www:/web -d metalguardian/php-web-server
+    docker run --name dev-server -p 127.0.0.1:80:80 -v /opt/mysql:/var/lib/mysql -v /var/www:/web -d metalguardian/php-web-server
 
-`--name some-server` set container name, for simple access to it in the future: you can start, restart and 
-stop the created container using its name: `docker start some-server`
+`--name dev-server` set container name, for simple access to it in the future: you can start, restart and 
+stop the created container using its name: `docker start dev-server`
 
 `-p 127.0.0.1:80:80` bind the port `80` of the container to the port `80` on the host machine (on 127.0.0.1 localhost)
 
@@ -56,13 +56,13 @@ container (`/var/lib/mysql`)
 
 You can access container terminal like this:
 
-    docker exec -ti server su docker
+    docker exec -ti dev-server su docker
     
 It logs you in the container as special user `docker`, witch can work with source code and console commands.
 
 But if you need `root` privileges, run:
 
-    docker exec -ti server bash
+    docker exec -ti dev-server bash
     
 It logs you in as `root`
 
