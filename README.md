@@ -1,6 +1,6 @@
 # What is this image?
 
-The image contains a package of pre-installed nginx (1.6.2) + php-fpm (5.6.4) + mysql (5.6.22). It can be used as 
+The image contains a package of pre-installed `nginx (1.6.2) + php-fpm (5.6.4) + mysql (5.6.22)`. It can be used as 
 a php development server, as a substitution for Vagrant VirtualBox provider
 
 ## Features:
@@ -23,7 +23,7 @@ thus it can access all files. At the same time, you have all permissions for gen
 
 ## additional software
 
-For comfortable work, I suggest you to use `dnsmasq` for automatic resolving of such domains as `http://*.dev/`. 
+For comfortable work, I suggest you to use [dnsmasq](https://en.wikipedia.org/wiki/Dnsmasq) for automatic resolving of such domains as `http://*.dev/`. 
 You can install it in Ubuntu this way (run as `root`):
 
     apt-get install dnsmasq
@@ -37,6 +37,9 @@ Other variant is to update `/etc/hosts` manually, each time adding something lik
     127.0.0.1   my-app.dev
 
 ## how to run container
+
+First of all you need install [Docker](https://www.docker.com/) on your machine. All command need run as root or you
+need add your user to docker group.
 
     docker run --name dev-server -p 127.0.0.1:80:80 -v /opt/mysql:/var/lib/mysql -v /var/www:/web -d metalguardian/php-web-server
 

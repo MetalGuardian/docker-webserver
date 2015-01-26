@@ -6,10 +6,7 @@ ENV LANG en_US.UTF-8
 ENV TERM xterm
 ENV MYSQL_USER root
 ENV MYSQL_PASSWORD ""
-ENV NGINX_VERSION 1.6.2-1~trusty
 ENV MYSQL_MAJOR 5.6
-ENV MYSQL_VERSION 5.6.22-2ubuntu14.04
-ENV PHP_VERSION 5.6.4+dfsg-1+deb.sury.org~trusty+1
 ENV HOSTNAME docker.dev
 
 RUN \
@@ -37,14 +34,14 @@ RUN \
 		nano \
 		openssl \
 		ca-certificates \
-		nginx=$NGINX_VERSION \
+		nginx \
 		supervisor \
-		mysql-server=$MYSQL_VERSION \
+		mysql-server \
 		mysql-client \
 		curl \
 		wget \
 		git \
-		php5-fpm=$PHP_VERSION \
+		php5-fpm \
 		php5-cli \
 		php5-mysql \
 		php5-curl \
