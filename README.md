@@ -1,6 +1,6 @@
 # What is this image?
 
-The image contains a package of pre-installed `nginx (1.6.2) + php-fpm (5.6.4) + mysql (5.6.22)`. It can be used as 
+The image contains a package of pre-installed `nginx (1.6.2) + php-fpm (5.6.5) + mysql (5.6.22)`. It can be used as 
 a php development server, as a substitution for Vagrant VirtualBox provider
 
 ## Features:
@@ -68,6 +68,14 @@ But if you need `root` privileges, run:
     docker exec -ti dev-server bash
     
 It logs you in as `root`
+
+## install new software
+
+Before you can install some new packages, you need run (as `root`):
+
+    apt-get update
+
+Because all packages cache was cleaned while image was building
 
 ## other workflow
 
