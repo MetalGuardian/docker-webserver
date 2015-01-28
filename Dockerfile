@@ -51,6 +51,8 @@ RUN \
 		php5-mcrypt \
 		php5-memcached \
 		php5-json \
+		php-pear \
+		php5-dev \
 		phpmyadmin && \
 
 # install composer
