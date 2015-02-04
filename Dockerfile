@@ -9,6 +9,9 @@ ENV MYSQL_PASSWORD ""
 ENV MYSQL_MAJOR 5.6
 ENV HOSTNAME docker.dev
 
+# add php configuration file in specified position
+COPY configs/custom.php.ini /etc/php5/mods-available/custom.ini
+
 RUN \
 
 # utf locale
@@ -71,12 +74,10 @@ RUN \
 	chown -R docker:docker /web && \
 
 # add custom php configuration
-	mkdir -p /etc/php5/fpm/conf.d && \
-	mkdir -p /etc/php5/cli/conf.d && \
-	cd /etc/php5/fpm/conf.d && \
-	ln -sf ../../mods-available/custom.php.ini ./20-custom.php.ini && \
-	cd /etc/php5/cli/conf.d && \
-	ln -sf ../../mods-available/custom.php.ini ./20-custom.php.ini && \
+	php5enmod custom && \
+
+# enable mcrypt module
+	php5enmod mcrypt && \
 
 # set access and error nginx logs to stdout and stderr
 	ln -sf /dev/stdout /var/log/nginx/access.log && \
@@ -86,17 +87,20 @@ RUN \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# add supervisord configuration file 
 COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# add mysql start script
 COPY configs/mysql.sh /opt/mysql.sh
 
+# replace php-fpm configuration file
 COPY configs/php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
+# add phpmyadmin configuration file 
 COPY configs/phpmyadmin.php /etc/phpmyadmin/conf.d/phpmyadmin.php
 
+# replace nginx virtual host configuration file
 COPY configs/default.conf /etc/nginx/conf.d/default.conf
-
-COPY configs/custom.php.ini /etc/php5/mods-available/custom.php.ini
 
 EXPOSE 80 443 3306 9000
 
