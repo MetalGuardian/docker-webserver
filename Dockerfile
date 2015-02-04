@@ -66,7 +66,7 @@ RUN \
 	yes "" | adduser --uid=1000 --disabled-password docker && \
 
 # install composer assets plugin
-	sudo -H -u docker bash -c "/usr/local/bin/composer global require fxp/composer-asset-plugin:1.0.0-beta4" && \
+	sudo -H -u docker bash -c "/usr/local/bin/composer global require fxp/composer-asset-plugin:1.0.0" && \
 
 # create and set access to the folder
 	mkdir -p /web/docker && \
