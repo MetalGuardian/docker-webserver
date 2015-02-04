@@ -53,6 +53,7 @@ RUN \
 		php5-json \
 		php-pear \
 		php5-dev \
+		php5-xdebug \
 		phpmyadmin && \
 
 # install composer
