@@ -65,6 +65,7 @@ RUN \
 
 # add user "docker" to use it as default user for working with files
 	yes "" | adduser --uid=1000 --disabled-password docker && \
+	echo "docker   ALL=(ALL:ALL) NOPASSWD: ALL" >> /etc/sudoers \
 
 # install composer assets plugin
 	sudo -H -u docker bash -c "/usr/local/bin/composer global require fxp/composer-asset-plugin:1.0.0" && \
