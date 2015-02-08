@@ -35,6 +35,7 @@ RUN \
 # install all packages
 	DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
 		nano \
+		bash-completion \
 		openssl \
 		ca-certificates \
 		nginx \
