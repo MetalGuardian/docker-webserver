@@ -123,6 +123,9 @@ COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # add mysql start script
 COPY configs/mysql.sh /opt/mysql.sh
 
+# add selenium starter script
+COPY configs/tests.sh /opt/tests.sh
+
 # replace php-fpm configuration file
 COPY configs/php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
