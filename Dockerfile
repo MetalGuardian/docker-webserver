@@ -49,6 +49,7 @@ RUN \
 		curl \
 		wget \
 		git \
+		sqlite3 \
 		php5-fpm \
 		php5-cli \
 		php5-mysql \
@@ -62,6 +63,7 @@ RUN \
 		php-pear \
 		php5-dev \
 		php5-xdebug \
+		php5-sqlite \
 		phpmyadmin \
 # install dev env for selenium tests
 		firefox \
