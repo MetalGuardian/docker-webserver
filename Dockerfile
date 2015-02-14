@@ -137,7 +137,9 @@ COPY configs/phpmyadmin.php /etc/phpmyadmin/conf.d/phpmyadmin.php
 # replace nginx virtual host configuration file
 COPY configs/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80 443 3306 9000 4444 5900
+COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
+
+EXPOSE 80 443 3306 9000 4444 5900 9001
 
 VOLUME ["/web", "/var/lib/mysql"]
 
