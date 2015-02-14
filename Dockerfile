@@ -139,7 +139,7 @@ COPY configs/default.conf /etc/nginx/conf.d/default.conf
 
 COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
 
-EXPOSE 80 443 3306 9000 4444 5900 9001
+EXPOSE 80 443 3306 9000 4444 5900
 
 VOLUME ["/web", "/var/lib/mysql"]
 
