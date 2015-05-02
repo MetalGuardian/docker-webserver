@@ -76,7 +76,10 @@ RUN \
 		xfonts-scalable \
 		xfonts-cyrillic \
 		unzip \
-		fluxbox && \
+		fluxbox \
+		nodejs \
+		npm \
+		nodejs-legacy && \
 
 # install composer
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
