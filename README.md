@@ -1,6 +1,6 @@
 # What is this image?
 
-The image contains a package of pre-installed `nginx (1.6.2) + php-fpm (5.6.5) + mysql (5.6.22)`. It can be used as 
+The image contains a package of pre-installed `nginx (1.8.0) + php-fpm (5.6.8) + mysql (5.6.24)`. It can be used as 
 a php development server, as a substitution for Vagrant VirtualBox provider
 
 ## Features:
