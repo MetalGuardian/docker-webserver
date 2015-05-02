@@ -12,6 +12,8 @@ ENV HOSTNAME docker.dev
 # add php configuration file in specified position
 COPY configs/custom.php.ini /etc/php5/mods-available/custom.ini
 
+COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
+
 RUN \
 
 # utf locale
@@ -28,10 +30,6 @@ RUN \
 # add ondrej php repository
 	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C && \
 	echo "deb http://ppa.launchpad.net/ondrej/php5-5.6/ubuntu trusty main" > /etc/apt/sources.list.d/php.list && \
-
-# add chrome repository
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A040830F7FAC5991 && \
-	echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
 
 # update
 	apt-get update && \
@@ -65,18 +63,7 @@ RUN \
 		php5-xdebug \
 		php5-sqlite \
 		phpmyadmin \
-# install dev env for selenium tests
-		firefox \
-		google-chrome-stable \
-		openjdk-7-jre-headless \
-		x11vnc \
-		xvfb \
-		xfonts-100dpi \
-		xfonts-75dpi \
-		xfonts-scalable \
-		xfonts-cyrillic \
-		unzip \
-		fluxbox && \
+		unzip && \
 
 # install composer
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
@@ -99,21 +86,12 @@ RUN \
 # enable mcrypt module
 	php5enmod mcrypt && \
 
+# enable mcrypt module
+	php5enmod xdebug && \
+
 # set access and error nginx logs to stdout and stderr
 	ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log && \
-
-# set where to store vnc password
-#	x11vnc -storepasswd secret ~/.vnc/passwd && \
-
-# install chromedriver
-	wget --no-verbose https://chromedriver.googlecode.com/files/chromedriver_linux64_2.2.zip -O /tmp/chromedriver.zip && \
-	unzip /tmp/chromedriver.zip -d /tmp/ && \
-	rm /tmp/chromedriver.zip && \
-	mv /tmp/chromedriver /usr/bin/chromedriver && \
-
-# download selenium standalone
-	wget --no-verbose http://selenium-release.storage.googleapis.com/2.44/selenium-server-standalone-2.44.0.jar -O /opt/selenium-server-standalone.jar && \
 
 # clean apt cache and temps
 	apt-get clean && \
@@ -125,9 +103,6 @@ COPY configs/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 # add mysql start script
 COPY configs/mysql.sh /opt/mysql.sh
 
-# add selenium starter script
-COPY configs/tests.sh /opt/tests.sh
-
 # replace php-fpm configuration file
 COPY configs/php-fpm.conf /etc/php5/fpm/php-fpm.conf
 
@@ -137,9 +112,7 @@ COPY configs/phpmyadmin.php /etc/phpmyadmin/conf.d/phpmyadmin.php
 # replace nginx virtual host configuration file
 COPY configs/default.conf /etc/nginx/conf.d/default.conf
 
-COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
-
-EXPOSE 80 443 3306 9000 4444 5900
+EXPOSE 80 443 3306 9000
 
 VOLUME ["/web", "/var/lib/mysql"]
 
