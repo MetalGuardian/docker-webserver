@@ -12,8 +12,6 @@ ENV HOSTNAME docker.dev
 # add php configuration file in specified position
 COPY configs/custom.php.ini /etc/php5/mods-available/custom.ini
 
-COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
-
 RUN \
 
 # utf locale
@@ -89,9 +87,6 @@ RUN \
 # enable mcrypt module
 	php5enmod mcrypt && \
 
-# enable mcrypt module
-	php5enmod xdebug && \
-
 # set access and error nginx logs to stdout and stderr
 	ln -sf /dev/stdout /var/log/nginx/access.log && \
 	ln -sf /dev/stderr /var/log/nginx/error.log && \
@@ -114,6 +109,8 @@ COPY configs/phpmyadmin.php /etc/phpmyadmin/conf.d/phpmyadmin.php
 
 # replace nginx virtual host configuration file
 COPY configs/default.conf /etc/nginx/conf.d/default.conf
+
+COPY configs/xdebug.ini /etc/php5/mods-available/xdebug.ini
 
 EXPOSE 80 443 3306 9000
 
