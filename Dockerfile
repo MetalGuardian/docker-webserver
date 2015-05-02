@@ -63,7 +63,10 @@ RUN \
 		php5-xdebug \
 		php5-sqlite \
 		phpmyadmin \
-		unzip && \
+		unzip \
+		nodejs \
+		npm \
+		nodejs-legacy && \
 
 # install composer
 	curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
