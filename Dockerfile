@@ -35,7 +35,6 @@ RUN \
 # install all packages
 	DEBIAN_FRONTEND=noninteractive apt-get -y -q --no-install-recommends install \
 		nano \
-// to use git 
 		ssh \
 		bash-completion \
 		openssl \
