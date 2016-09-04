@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04.1
 MAINTAINER Ivan Pushkin <imetalguardi+docker@gmail.com>
 
 ENV LC_ALL en_US.UTF-8
