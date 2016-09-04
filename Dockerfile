@@ -6,7 +6,7 @@ ENV LANG en_US.UTF-8
 ENV TERM xterm
 ENV MYSQL_USER root
 ENV MYSQL_PASSWORD ""
-ENV MYSQL_MAJOR 5.6
+ENV MYSQL_MAJOR 5.7
 ENV HOSTNAME docker.dev
 
 # add php configuration file in specified position
